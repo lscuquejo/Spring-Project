@@ -3,11 +3,13 @@ package com.training.app.ws.service.implementation;
 import java.util.Arrays;
 import java.util.List;
 
+import com.training.app.ws.exceptions.AccountServiceExcepetion;
 import com.training.app.ws.io.entity.AccountEntity;
 import com.training.app.ws.repository.AccountRepository;
 import com.training.app.ws.service.AccountService;
 import com.training.app.ws.shared.Utils;
 import com.training.app.ws.shared.dto.AccountDto;
+import com.training.app.ws.ui.model.response.ErrorMessages;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,25 @@ public class AccountServiceImplementation implements AccountService {
             throw new RuntimeException("not found by uid" + uId);
 
         BeanUtils.copyProperties(accountEntity, returnValue);
+
+        return returnValue;
+    }
+
+    @Override
+    public AccountDto updateAccount(String uId, AccountDto account) {
+        AccountDto returnValue = new AccountDto();
+        AccountEntity accountEntity = accountRepository.findByUid(uId);
+
+        if(accountEntity == null)
+            throw new AccountServiceExcepetion(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+
+        accountEntity.setBalance(account.getBalance());
+        accountEntity.setName(account.getName());
+        accountEntity.setTreasury(account.getTreasury());
+
+        AccountEntity updatedAccountDetails = accountRepository.save(accountEntity);
+
+        BeanUtils.copyProperties(updatedAccountDetails, returnValue);
 
         return returnValue;
     }
