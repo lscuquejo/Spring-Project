@@ -6,6 +6,9 @@ import com.training.app.ws.shared.dto.AccountDto;
 import com.training.app.ws.ui.model.request.AccountDetailsRequestModel;
 import com.training.app.ws.ui.model.response.AccountRest;
 import com.training.app.ws.ui.model.response.ErrorMessages;
+import com.training.app.ws.ui.model.response.OperationStatusModel;
+import com.training.app.ws.ui.model.response.RequestOperationName;
+import com.training.app.ws.ui.model.response.RequestOperationStatus;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,10 +85,20 @@ public class AccountController {
         return returnValue;
     }
 
-    @DeleteMapping
-    public String DeleteAccount()
+    @DeleteMapping(
+        path = "/{uid}",
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public OperationStatusModel DeleteAccount(
+            @PathVariable String uid
+        )
     {
-        return "delete Account has been called";
+        OperationStatusModel returnValue = new OperationStatusModel();
+
+        returnValue.setOperationName(RequestOperationName.DELETE.name());
+        returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+
+        return returnValue;
     }
 
 }
