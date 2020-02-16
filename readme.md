@@ -1,5 +1,10 @@
 Numbers = commit msg 
+
+-----
+
 “*” = action taken under the last commit
+
+-----
 
 0-Setting base environment
 
