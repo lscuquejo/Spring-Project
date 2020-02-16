@@ -10,9 +10,11 @@ Numbers = commit msg “*” = action taken under the last commit
 
 4-Create controller
 
-5-Set basic endpoints (get account, create account, delete accounts, update accounts) 	*Started server and tested if comes with the desired response.
+5-Set basic endpoints (get account, create account, delete accounts, update accounts) 	
+*Started server and tested if comes with the desired response.
 
-6-Added needed dependencies data-jpa, mysql-connector-java 	*Gone to “https://mvnrepository.com/“ and found the both of the extensions ( data-jpa, mysql-connector-java)
+6-Added needed dependencies data-jpa, mysql-connector-java 	
+*Gone to “https://mvnrepository.com/“ and found the both of the extensions ( data-jpa, mysql-connector-java)
 
 7-Configure application.properties file
 
@@ -29,9 +31,11 @@ Numbers = commit msg “*” = action taken under the last commit
 12-Create AccountServiceImplmentation and AccountServiceInterface.
 
 13-Create the AccountEntity to be the model given to the database.
-	*set some parameter such as (nullable and length) 14-Create the AccountRepository (that will be handling everything from standards queries to te database)
+	*set some parameter such as (nullable and length)
+	
+14-Create the AccountRepository (that will be handling everything from standards queries to te database)
 
-15-Create function for the AccountServiceImplementation to handle the save into database 	*test it and it fails… 	*find error
+15-Create function for the AccountServiceImplementation to handle the save into database 	*test it and it fails… 		*find error
 
 16- Fix error temporarily that need to set id and it’s not auto generating.
 	*test it and it passes. 17- checks if name is a full name (creation endpoint).
@@ -40,14 +44,26 @@ Numbers = commit msg “*” = action taken under the last commit
 
 19- create the unique id generator using the secure bundle from java.utils
 
-20-change the name field to be unique (Entity modification); 21- Create the get account endpoint (not working yet).
+20-change the name field to be unique (Entity modification);
 
-22- Create the get account by UId at the account service 23- Create the find by UId at the account Repository
- 	*test it and find bugs 24- Add the Uid to be shown at the accountRest 25- Added dependency to handle both json and xml (Jackson-dataformat)
+21- Create the get account endpoint (not working yet).
+
+22- Create the get account by UId at the account service
+
+23- Create the find by UId at the account Repository
+ 	*test it and find bugs
+	
+24- Add the Uid to be shown at the accountRest
+
+25- Added dependency to handle both json and xml (Jackson-dataformat)
 
 26- implemented the dependency into my controller.
-        *test now it works both xml and json 27- create the error messages enum. (With the constants that I think I’m going to use for error handling)
+        *test now it works both xml and json
+	
+27- create the error messages enum. (With the constants that I think I’m going to use for error handling)
 
-28 - Added fast test of exception handler (account controller) 29 - Added an general exception handler (but it’s just giving me an exception with a string not json).
+28 - Added fast test of exception handler (account controller)
 
-30- Created Customized ErrorMessage object and implemented it to  
+29 - Added an general exception handler (but it’s just giving me an exception with a string not json).
+
+30- Created Customized ErrorMessage object and implemented it to 
