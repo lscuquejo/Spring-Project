@@ -82,4 +82,4 @@ Numbers = commit msg
 
 34 - added update account functionality into account service implementation class.
 	*tested it found bugs and fixed it
-
+35 - created functionality, model and enum for the delete endpoint (not working yet need to apply the dele into the repository)
