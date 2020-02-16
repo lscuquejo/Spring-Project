@@ -108,7 +108,7 @@ public class AccountController {
 
     @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public List <AccountRest> getAccounts(
-        @RequestParam(value = "page", defaultValue = "1")int page,
+        @RequestParam(value = "page", defaultValue = "0")int page,
         @RequestParam(value= "limit", defaultValue = "5")int limit
         )
     {

@@ -1,5 +1,6 @@
 package com.training.app.ws.service.implementation;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +14,9 @@ import com.training.app.ws.ui.model.response.ErrorMessages;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -88,5 +92,23 @@ public class AccountServiceImplementation implements AccountService {
             throw new AccountServiceExcepetion(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
         accountRepository.delete(accountEntity);
+    }
+
+    @Override
+    public List<AccountDto> getAccounts(int page, int limit) {
+        List<AccountDto> returnValue = new ArrayList<>();
+
+        Pageable pageableRequest = PageRequest.of(page, limit);
+        
+        Page<AccountEntity> accountsPage = accountRepository.findAll(pageableRequest);
+        List<AccountEntity> accounts = accountsPage.getContent();
+
+        for (AccountEntity accountEntity : accounts) {
+            AccountDto accountDto = new AccountDto();
+            BeanUtils.copyProperties(accountEntity, accountDto);
+            returnValue.add(accountDto);
+        }
+
+        return returnValue;
     }
 }
