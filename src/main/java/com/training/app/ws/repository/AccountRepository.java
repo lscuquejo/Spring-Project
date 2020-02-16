@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRepository extends PagingAndSortingRepository<AccountEntity, Long> {
     AccountEntity findByUid(String Uid);
+    AccountEntity findByName(String name);
 }

@@ -32,7 +32,10 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public AccountDto createAccount(AccountDto account) {
-        
+        AccountEntity storedAccountDetailsFromRequest = accountRepository.findByName(account.getName());
+
+        if(storedAccountDetailsFromRequest != null) throw new AccountServiceExcepetion(ErrorMessages.RECORD_ALREADY_EXISTS.getErrorMessage());
+
         // checks if is a full name
         String[] splitedName = account.getName().split("\\s+");
         List<String> splitedNameAsList = Arrays.asList(splitedName);
