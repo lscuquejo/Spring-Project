@@ -69,3 +69,5 @@ Numbers = commit msg “*” = action taken under the last commit
 30- Created Customized ErrorMessage object and implemented it to 
 
 31- Added the general exception handler to all api.
+
+32 - Added the logic for the functionality of the updateAccount (not working cuz the repository does not have the needed function yet)
