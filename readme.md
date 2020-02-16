@@ -94,3 +94,5 @@ Numbers = commit msg
     
 39-  fixed that currency is set to eur only.
 
+40-  adding new exception to the enum and implementing it
+
