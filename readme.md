@@ -67,3 +67,5 @@ Numbers = commit msg “*” = action taken under the last commit
 29 - Added an general exception handler (but it’s just giving me an exception with a string not json).
 
 30- Created Customized ErrorMessage object and implemented it to 
+
+31- Added the general exception handler to all api.
