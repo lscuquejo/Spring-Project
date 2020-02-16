@@ -1,5 +1,8 @@
 package com.training.app.ws.ui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.training.app.ws.exceptions.AccountServiceExcepetion;
 import com.training.app.ws.service.AccountService;
 import com.training.app.ws.shared.dto.AccountDto;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -102,4 +106,22 @@ public class AccountController {
         return returnValue;
     }
 
+    @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    public List <AccountRest> getAccounts(
+        @RequestParam(value = "page", defaultValue = "1")int page,
+        @RequestParam(value= "limit", defaultValue = "5")int limit
+        )
+    {
+        List<AccountRest> returnValue = new ArrayList<>();
+
+        List<AccountDto> accounts = accountService.getAccounts(page, limit);
+
+        for (AccountDto accountDto : accounts) {
+            AccountRest accountModel = new AccountRest();
+            BeanUtils.copyProperties(accountDto, accountModel);
+            returnValue.add(accountModel);
+        }
+
+        return returnValue;
+    }
 }
