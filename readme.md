@@ -86,3 +86,10 @@ Numbers = commit msg
 35 - created functionality, model and enum for the delete endpoint (not working yet need to apply the dele into the repository)
 
 36 - Made the delete functionality and added to the  controller with a custom response
+
+37 - started the logic for the list accounts (at the controller using pagination) not working yet need to apply the AccountRepository functionality
+
+38- fixed list functionality and modified the repository to handle pagination
+    * tested and it works like shine :)
+    
+
