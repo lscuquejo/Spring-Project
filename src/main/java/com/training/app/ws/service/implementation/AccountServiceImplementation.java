@@ -2,7 +2,9 @@ package com.training.app.ws.service.implementation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 import com.training.app.ws.exceptions.AccountServiceExcepetion;
 import com.training.app.ws.io.entity.AccountEntity;
@@ -40,8 +42,11 @@ public class AccountServiceImplementation implements AccountService {
             AccountEntity accountEntity = new AccountEntity();
             BeanUtils.copyProperties(account, accountEntity);
 
+            Currency currency = Currency.getInstance("EUR");
+
             String publicUid = utils.generateUId(30);
             accountEntity.setUid(publicUid);
+            accountEntity.setCurrency(currency);
 
             AccountEntity storedAccountDetails = accountRepository.save(accountEntity);
 
