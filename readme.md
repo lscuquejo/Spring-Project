@@ -92,4 +92,5 @@ Numbers = commit msg
 38- fixed list functionality and modified the repository to handle pagination
     * tested and it works like shine :)
     
+39-  fixed that currency is set to eur only.
 
