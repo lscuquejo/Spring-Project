@@ -6,4 +6,5 @@ public interface AccountService {
     AccountDto createAccount(AccountDto account);
     AccountDto getAccountByUId(String uId);
     AccountDto updateAccount(String uId, AccountDto account);
+    void deleteAccount(String uId);
 }

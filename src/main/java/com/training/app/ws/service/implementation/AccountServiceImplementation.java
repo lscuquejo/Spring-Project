@@ -54,7 +54,7 @@ public class AccountServiceImplementation implements AccountService {
         AccountEntity accountEntity = accountRepository.findByUid(uId);
 
         if(accountEntity == null)
-            throw new RuntimeException("not found by uid" + uId);
+            throw new AccountServiceExcepetion(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
         BeanUtils.copyProperties(accountEntity, returnValue);
 
@@ -78,5 +78,15 @@ public class AccountServiceImplementation implements AccountService {
         BeanUtils.copyProperties(updatedAccountDetails, returnValue);
 
         return returnValue;
+    }
+
+    @Override
+    public void deleteAccount(String uId) {
+        AccountEntity accountEntity = accountRepository.findByUid(uId);
+        
+        if(accountEntity == null)
+            throw new AccountServiceExcepetion(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+
+        accountRepository.delete(accountEntity);
     }
 }

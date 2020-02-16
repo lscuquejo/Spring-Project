@@ -89,13 +89,14 @@ public class AccountController {
         path = "/{uid}",
         produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public OperationStatusModel DeleteAccount(
-            @PathVariable String uid
-        )
+    public OperationStatusModel DeleteAccount(@PathVariable String uid)
     {
         OperationStatusModel returnValue = new OperationStatusModel();
 
         returnValue.setOperationName(RequestOperationName.DELETE.name());
+
+        accountService.deleteAccount(uid);
+
         returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
 
         return returnValue;
