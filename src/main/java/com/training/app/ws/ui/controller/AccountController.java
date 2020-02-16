@@ -59,10 +59,27 @@ public class AccountController {
         return returnValue;
     }
 
-    @PutMapping
-    public String UpdateAccount()
+    @PutMapping(
+        path = "/{uid}",
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public AccountRest UpdateAccount(
+        @RequestBody AccountDetailsRequestModel accountDetails, 
+        @PathVariable String uid
+        )
     {
-        return "update Account has been called";
+        AccountRest returnValue = new AccountRest();
+
+        if(accountDetails.getName().isEmpty()) throw new AccountServiceExcepetion(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
+
+        AccountDto AccountDto = new AccountDto();
+        BeanUtils.copyProperties(accountDetails, AccountDto);
+
+        AccountDto updatedAccount = accountService.updateAccount(AccountDto);
+        BeanUtils.copyProperties(updatedAccount, returnValue);
+
+        return returnValue;
     }
 
     @DeleteMapping
