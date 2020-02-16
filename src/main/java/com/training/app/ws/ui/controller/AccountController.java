@@ -50,10 +50,10 @@ public class AccountController {
 
         if(accountDetails.getName().isEmpty()) throw new AccountServiceExcepetion(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 
-        AccountDto AccountDto = new AccountDto();
-        BeanUtils.copyProperties(accountDetails, AccountDto);
+        AccountDto accountDto = new AccountDto();
+        BeanUtils.copyProperties(accountDetails, accountDto);
 
-        AccountDto createdAccount = accountService.createAccount(AccountDto);
+        AccountDto createdAccount = accountService.createAccount(accountDto);
         BeanUtils.copyProperties(createdAccount, returnValue);
 
         return returnValue;
@@ -73,10 +73,10 @@ public class AccountController {
 
         if(accountDetails.getName().isEmpty()) throw new AccountServiceExcepetion(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 
-        AccountDto AccountDto = new AccountDto();
-        BeanUtils.copyProperties(accountDetails, AccountDto);
+        AccountDto accountDto = new AccountDto();
+        BeanUtils.copyProperties(accountDetails, accountDto);
 
-        AccountDto updatedAccount = accountService.updateAccount(AccountDto);
+        AccountDto updatedAccount = accountService.updateAccount(uid, accountDto);
         BeanUtils.copyProperties(updatedAccount, returnValue);
 
         return returnValue;
