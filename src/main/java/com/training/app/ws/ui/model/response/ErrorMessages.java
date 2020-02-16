@@ -7,7 +7,8 @@ public enum ErrorMessages {
     NO_RECORD_FOUND("Record with provided id was not found"),
     AUTHENTICATION_FAILED("Authentication failed"),
     COULD_NOT_UPDATE_RECORD("Could not update record"),
-    COULD_NOT_DELETE_RECORD("Could not delete record");
+    COULD_NOT_DELETE_RECORD("Could not delete record"),
+    BAD_REQUEST("Bad request from client side");
 
     private String errorMessage;
 

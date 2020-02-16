@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 
 import com.training.app.ws.exceptions.AccountServiceExcepetion;
 import com.training.app.ws.io.entity.AccountEntity;
@@ -33,7 +32,7 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public AccountDto createAccount(AccountDto account) {
-
+        
         // checks if is a full name
         String[] splitedName = account.getName().split("\\s+");
         List<String> splitedNameAsList = Arrays.asList(splitedName);
@@ -54,7 +53,7 @@ public class AccountServiceImplementation implements AccountService {
             BeanUtils.copyProperties(storedAccountDetails, returnValue);
 
             return returnValue;
-        } throw new RuntimeException("name field : It must be a full name");
+        } throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + "name field : It must be a full name");
     }
 
     @Override
