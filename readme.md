@@ -10,9 +10,11 @@ Numbers = commit msg “*” = action taken under the last commit
 
 4-Create controller
 
-5-Set basic endpoints (get account, create account, delete accounts, update accounts) 	*Started server and tested if comes with the desired response.
+5-Set basic endpoints (get account, create account, delete accounts, update accounts) 	
+*Started server and tested if comes with the desired response.
 
-6-Added needed dependencies data-jpa, mysql-connector-java 	*Gone to “https://mvnrepository.com/“ and found the both of the extensions ( data-jpa, mysql-connector-java)
+6-Added needed dependencies data-jpa, mysql-connector-java 	
+*Gone to “https://mvnrepository.com/“ and found the both of the extensions ( data-jpa, mysql-connector-java)
 
 7-Configure application.properties file
 
@@ -29,9 +31,11 @@ Numbers = commit msg “*” = action taken under the last commit
 12-Create AccountServiceImplmentation and AccountServiceInterface.
 
 13-Create the AccountEntity to be the model given to the database.
-	*set some parameter such as (nullable and length) 14-Create the AccountRepository (that will be handling everything from standards queries to te database)
+	*set some parameter such as (nullable and length)
+	
+14-Create the AccountRepository (that will be handling everything from standards queries to te database)
 
-15-Create function for the AccountServiceImplementation to handle the save into database 	*test it and it fails… 	*find error
+15-Create function for the AccountServiceImplementation to handle the save into database 	*test it and it fails… 		*find error
 
 16- Fix error temporarily that need to set id and it’s not auto generating.
 	*test it and it passes. 17- checks if name is a full name (creation endpoint).
