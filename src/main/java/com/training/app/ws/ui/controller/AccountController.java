@@ -1,12 +1,16 @@
 package com.training.app.ws.ui.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.training.app.ws.exceptions.AccountServiceExcepetion;
+import com.training.app.ws.io.entity.AccountEntity;
+import com.training.app.ws.repository.AccountRepository;
 import com.training.app.ws.service.AccountService;
 import com.training.app.ws.shared.dto.AccountDto;
 import com.training.app.ws.ui.model.request.AccountDetailsRequestModel;
+import com.training.app.ws.ui.model.request.TransferRequestModel;
 import com.training.app.ws.ui.model.response.AccountRest;
 import com.training.app.ws.ui.model.response.ErrorMessages;
 import com.training.app.ws.ui.model.response.OperationStatusModel;
@@ -29,6 +33,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("accounts") // http://provided:port/
 public class AccountController {
+
+    @Autowired
+    AccountRepository accountRepository;
 
     @Autowired
     AccountService accountService;
@@ -121,6 +128,32 @@ public class AccountController {
             BeanUtils.copyProperties(accountDto, accountModel);
             returnValue.add(accountModel);
         }
+
+        return returnValue;
+    }
+
+    @PostMapping(
+        path = "/transfer",
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public OperationStatusModel transfer (@RequestBody TransferRequestModel transferDetails) {
+        OperationStatusModel returnValue = new OperationStatusModel();
+
+        AccountEntity source = accountRepository.findByUid(transferDetails.getSourceId());
+
+        AccountEntity target = accountRepository.findByUid(transferDetails.getTargetId());
+
+        if(source.getBalance().intValue() < transferDetails.getSourceBalance().intValue()) throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + "you don't have enoght balance");
+
+        source.setBalance(source.getBalance().subtract(transferDetails.getSourceBalance()));
+        target.setBalance(target.getBalance().add(transferDetails.getSourceBalance()));
+
+        accountRepository.save(source);
+        accountRepository.save(target);
+
+        returnValue.setOperationName("Transfered succsefully");
+        returnValue.setOperationResult("Transfer");
 
         return returnValue;
     }
