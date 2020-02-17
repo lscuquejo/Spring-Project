@@ -1,6 +1,5 @@
 package com.training.app.ws.ui.controller;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,8 +143,10 @@ public class AccountController {
 
         AccountEntity target = accountRepository.findByUid(transferDetails.getTargetId());
 
-        if(source.getBalance().intValue() < transferDetails.getSourceBalance().intValue()) throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + "you don't have enoght balance");
-
+        if(source.getTreasury() == false) {
+            if(source.getBalance().intValue() < transferDetails.getSourceBalance().intValue()) throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + " you don't have enoght balance");
+        }
+        
         source.setBalance(source.getBalance().subtract(transferDetails.getSourceBalance()));
         target.setBalance(target.getBalance().add(transferDetails.getSourceBalance()));
 
