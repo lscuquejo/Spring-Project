@@ -1,5 +1,6 @@
 package com.training.app.ws.service.implementation;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.util.Assert;
 
 class AccountServiceImplementationTest {
     
@@ -44,6 +44,7 @@ class AccountServiceImplementationTest {
         
         AccountDto accountDto = accountService.getAccountByUId("123123");
 
-        Assert.notNull(accountDto, "accountDTO is null");
+        assertNotNull(accountDto, "accountDTO is null");
+        assertEquals("mocked", accountDto.getName());
     }
 }
