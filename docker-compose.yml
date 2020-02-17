@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb:10.5-bionic
+
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mysafepass
+    volumes:
+    - ./docker/db-data:/var/lib/mysql 
+
+  myjavaapp:
+    links:
+        - db:db
+    build: ./
+    image: rest-spring:0.1
+    # environment:
+    #   - APP_ENV=dev
+    ports:
+      - 8337:8080
