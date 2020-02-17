@@ -96,3 +96,9 @@ Numbers = commit msg
 
 40-  adding new exception to the enum and implementing it
 
+41 - added check if name already exists and if it does return exception.
+
+42 - finish logic for end point transfer
+
+43 - finish the logic that if teasurary its possible to have negative balance
+
