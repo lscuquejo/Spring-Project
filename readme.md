@@ -1,8 +1,23 @@
 # Technest-Spring-Boot-Rest-Exercise
 
-## How to run application.
+## How to run application
 
+### 
+1-Download the repo
+```
+git clone https://github.com/lscuquejo/Spring-Project.git
+```
 
+###
+2-Build (& run) the environment
+```
+docker-compose up --build
+```
+
+###
+3 - done :)
+
+-------------
 
 Numbers = commit msg 
 
