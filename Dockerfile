@@ -1,5 +1,7 @@
 FROM java:8-jdk-alpine
-COPY ./app/target/training-app-ws-0.0.1-SNAPSHOT.jar /usr/app/
+COPY ./app /usr/app/
+COPY ./.mvn /usr/app/.mvn
 WORKDIR /usr/app
+RUN ./mvnw install
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "training-app-ws-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "target/training-app-ws-0.0.1-SNAPSHOT.jar"]
