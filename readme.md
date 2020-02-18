@@ -9,13 +9,19 @@ git clone https://github.com/lscuquejo/Spring-Project.git
 ```
 
 ###
-2-Build (& run) the environment
+2-Get into the dir
+```
+cd Spring-Project
+```
+
+###
+3-Build (& run) the environment
 ```
 docker-compose up --build
 ```
 
 ###
-3 - done :)
+4 - done :)
 
 ## API docummentation
 
