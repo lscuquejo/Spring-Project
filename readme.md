@@ -1,6 +1,125 @@
-Numbers = commit msg 
+# Technest-Spring-Boot-Rest-Exercise
 
------
+## How to run application
+
+### 
+1-Download the repo
+```
+git clone https://github.com/lscuquejo/Spring-Project.git
+```
+
+###
+2-Get into the dir
+```
+cd Spring-Project
+```
+
+###
+3-Build (& run) the environment
+```
+docker-compose up --build
+```
+
+###
+4 - done :)
+
+## API docummentation
+
+### CreateAccount
+
+Required fields = name, balance, treasury
+
+Method = POST
+
+Endpoint = /accounts
+
+UrlParameters = none
+
+```
+curl --request POST \
+  --url http://localhost:8337/accounts \
+  --header 'content-type: application/json' \
+  --data '{
+	"name":"Leonardo Cuquejo Soares",
+	"balance":"2000.00",
+	"treasury":true
+}'
+```
+
+### ListAccount
+
+Method = GET
+
+Endpoint = /accounts
+
+UrlParameters = page, limit
+
+```
+curl --request GET \
+  --url 'http://localhost:8337/accounts?page=0&limit=50'
+```
+
+
+### GetAccount
+
+Method = GET
+
+Endpoint = /accounts/{UId}
+
+UrlParameters = none
+
+```
+curl --request GET \
+  --url http://localhost:8337/accounts/2JKjrqDseicXEpmrwnTquZ0Cd0FUeH
+```
+
+### UpdateAccount
+
+Required fields = name, balance, treasury
+
+Method = PUT
+
+Endpoint = /accounts/{UID}
+
+UrlParameters = none
+
+```
+curl --request PUT \
+  --url http://localhost:8337/accounts/INitFBipIZDCJXGB1ttPpqY7EbXbC3 \
+  --header 'content-type: application/json' \
+  --data '{
+    "name": "Leonardo Cuquejo Soares",
+    "balance": 3000.00,
+    "treasury": true
+}'
+```
+
+### Transfer
+
+Required fields = sourceId, sourceBalance, targetId
+
+Method = Post
+
+Endpoint = /accounts/transfer
+
+UrlParameters = none
+
+```
+curl --request POST \
+  --url http://localhost:8337/accounts/transfer \
+  --header 'content-type: application/json' \
+  --data '{
+    "sourceId":"E3JqpmeZbkXfVFBUrDvwoHLQmLXbRO",
+		"sourceBalance":"1200",
+		"targetId":"KkUBc5eYogogi0hwcCj4UxSPdxdl3S"
+}'
+```
+
+-------------
+
+## Ovearll progress and acction taken
+
+Numbers = commit msg 
 
 “*” = action taken under the last commit
 
@@ -103,3 +222,5 @@ Numbers = commit msg
 43 - finish the logic that if teasurary its possible to have negative balance
 
 44 -  created first test using mokito framwork
+
+45 - dockerization
