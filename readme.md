@@ -19,9 +19,9 @@ docker-compose up --build
 
 -------------
 
-Numbers = commit msg 
+## Ovearll progress and acction taken
 
------
+Numbers = commit msg 
 
 “*” = action taken under the last commit
 
