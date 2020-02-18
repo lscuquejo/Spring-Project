@@ -17,6 +17,17 @@ docker-compose up --build
 ###
 3 - done :)
 
+## API docummentation
+
+### ListAccount
+
+parameter = page, limit
+
+```
+curl --request GET \
+  --url 'http://localhost:8337/accounts?page=0&limit=50'
+```
+
 -------------
 
 ## Ovearll progress and acction taken
