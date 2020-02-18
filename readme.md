@@ -25,20 +25,6 @@ docker-compose up --build
 
 ## API docummentation
 
-### ListAccount
-
-Method = GET
-
-Endpoint = /accounts
-
-UrlParameters = page, limit
-
-```
-curl --request GET \
-  --url 'http://localhost:8337/accounts?page=0&limit=50'
-```
-
-
 ### CreateAccount
 
 Required fields = name, balance, treasury
@@ -60,6 +46,20 @@ curl --request POST \
 }'
 ```
 
+### ListAccount
+
+Method = GET
+
+Endpoint = /accounts
+
+UrlParameters = page, limit
+
+```
+curl --request GET \
+  --url 'http://localhost:8337/accounts?page=0&limit=50'
+```
+
+
 ### GetAccount
 
 Method = GET
@@ -70,7 +70,7 @@ UrlParameters = none
 
 ```
 curl --request GET \
-  --url 'http://localhost:8337/accounts?page=0&limit=50'
+  --url http://localhost:8337/accounts/2JKjrqDseicXEpmrwnTquZ0Cd0FUeH
 ```
 
 ### UpdateAccount
@@ -100,7 +100,7 @@ Required fields = sourceId, sourceBalance, targetId
 
 Method = Post
 
-Endpoint = /Accounts/Transfer
+Endpoint = /accounts/transfer
 
 UrlParameters = none
 
