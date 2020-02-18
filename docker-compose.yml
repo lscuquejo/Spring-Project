@@ -1,22 +1,28 @@
-version: '3.1'
-
+version: '3'
 services:
-
   db:
     image: mysql:8.0.19
-
-    # ports:
-    #   - 3307:3306
     environment:
-      MYSQL_ROOT_PASSWORD: mysafepass
       MYSQL_DATABASE: test_project
+      MYSQL_ROOT_PASSWORD: mysafepass
+      MYSQL_ROOT_HOST: '%'
     volumes:
-    - ./docker/db-data:/var/lib/mysql 
+      - ./docker/db-data:/var/lib/mysql 
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=mysafepass --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
 
   myjavaapp:
     build: ./
-    image: rest-spring:0.13
-    # environment:
-    #   - APP_ENV=dev
+    image: rest-spring:0.20
     ports:
       - 8337:8080
+    environment:
+      WAIT_HOSTS: db:3306
+    links:
+      - db
+    command: ["./wait-for-it.sh", "db:3306", "--", "./mvnw", "clean", "spring-boot:run"]
