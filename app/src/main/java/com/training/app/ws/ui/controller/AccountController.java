@@ -143,9 +143,9 @@ public class AccountController {
 
         AccountEntity target = accountRepository.findByUid(transferDetails.getTargetId());
 
-        if(source.getTreasury() == false) {
-            if(source.getBalance().intValue() < transferDetails.getSourceBalance().intValue()) throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + " you don't have enoght balance");
-        }
+        
+
+        if(source.getBalance().intValue() < transferDetails.getSourceBalance().intValue()) throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + " you don't have enoght balance");
         
         source.setBalance(source.getBalance().subtract(transferDetails.getSourceBalance()));
         target.setBalance(target.getBalance().add(transferDetails.getSourceBalance()));
