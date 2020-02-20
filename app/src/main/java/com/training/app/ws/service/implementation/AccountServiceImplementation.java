@@ -77,20 +77,25 @@ public class AccountServiceImplementation implements AccountService {
     @Override
     public AccountDto updateAccount(String uId, AccountDto account) {
         if (account.getName() != null) {
-        AccountDto returnValue = new AccountDto();
-        AccountEntity accountEntity = accountRepository.findByUid(uId);
+            AccountDto returnValue = new AccountDto();
+            AccountEntity accountEntity = accountRepository.findByUid(uId);
 
-        if(accountEntity == null)
-            throw new AccountServiceExcepetion(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+            // checks if is a full name
+            String[] splitedName = account.getName().split("\\s+");
+            List<String> splitedNameAsList = Arrays.asList(splitedName);
+            if (splitedNameAsList.size() > 1) {
+                if(accountEntity == null)
+                    throw new AccountServiceExcepetion(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
-        accountEntity.setBalance(account.getBalance());
-        accountEntity.setName(account.getName());
+                accountEntity.setBalance(account.getBalance());
+                accountEntity.setName(account.getName());
 
-        AccountEntity updatedAccountDetails = accountRepository.save(accountEntity);
+                AccountEntity updatedAccountDetails = accountRepository.save(accountEntity);
 
-        BeanUtils.copyProperties(updatedAccountDetails, returnValue);
+                BeanUtils.copyProperties(updatedAccountDetails, returnValue);
 
-        return returnValue;
+                return returnValue;
+            } throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + "name field : It must be a full name");
         } throw new AccountServiceExcepetion(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage() + " : name is missing");
     }
 
