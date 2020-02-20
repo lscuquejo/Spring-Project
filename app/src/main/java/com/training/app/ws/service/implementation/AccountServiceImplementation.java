@@ -76,6 +76,7 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public AccountDto updateAccount(String uId, AccountDto account) {
+        if (account.getName() != null) {
         AccountDto returnValue = new AccountDto();
         AccountEntity accountEntity = accountRepository.findByUid(uId);
 
@@ -84,13 +85,13 @@ public class AccountServiceImplementation implements AccountService {
 
         accountEntity.setBalance(account.getBalance());
         accountEntity.setName(account.getName());
-        accountEntity.setTreasury(account.getTreasury());
 
         AccountEntity updatedAccountDetails = accountRepository.save(accountEntity);
 
         BeanUtils.copyProperties(updatedAccountDetails, returnValue);
 
         return returnValue;
+        } throw new AccountServiceExcepetion(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage() + " : name is missing");
     }
 
     @Override
