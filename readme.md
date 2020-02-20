@@ -75,7 +75,7 @@ curl --request GET \
 
 ### UpdateAccount
 
-Required fields = name, balance, treasury
+Required fields = name, balance
 
 Method = PUT
 
