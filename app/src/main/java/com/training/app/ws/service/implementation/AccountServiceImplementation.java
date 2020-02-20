@@ -32,30 +32,32 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public AccountDto createAccount(AccountDto account) {
-        AccountEntity storedAccountDetailsFromRequest = accountRepository.findByName(account.getName());
+        if (account.getName() != null) {
+            AccountEntity storedAccountDetailsFromRequest = accountRepository.findByName(account.getName());
 
-        if(storedAccountDetailsFromRequest != null) throw new AccountServiceExcepetion(ErrorMessages.RECORD_ALREADY_EXISTS.getErrorMessage());
+            if(storedAccountDetailsFromRequest != null) throw new AccountServiceExcepetion(ErrorMessages.RECORD_ALREADY_EXISTS.getErrorMessage());
 
-        // checks if is a full name
-        String[] splitedName = account.getName().split("\\s+");
-        List<String> splitedNameAsList = Arrays.asList(splitedName);
-        if (splitedNameAsList.size() > 1) {
+            // checks if is a full name
+            String[] splitedName = account.getName().split("\\s+");
+            List<String> splitedNameAsList = Arrays.asList(splitedName);
+            if (splitedNameAsList.size() > 1) {
 
-            AccountEntity accountEntity = new AccountEntity();
-            BeanUtils.copyProperties(account, accountEntity);
+                AccountEntity accountEntity = new AccountEntity();
+                BeanUtils.copyProperties(account, accountEntity);
 
-            Currency currency = Currency.getInstance("EUR");
+                Currency currency = Currency.getInstance("EUR");
 
-            String publicUid = utils.generateUId(30);
-            accountEntity.setUid(publicUid);
-            accountEntity.setCurrency(currency);
+                String publicUid = utils.generateUId(30);
+                accountEntity.setUid(publicUid);
+                accountEntity.setCurrency(currency);
 
-            AccountEntity storedAccountDetails = accountRepository.save(accountEntity);
+                AccountEntity storedAccountDetails = accountRepository.save(accountEntity);
 
-            AccountDto returnValue = new AccountDto();
-            BeanUtils.copyProperties(storedAccountDetails, returnValue);
+                AccountDto returnValue = new AccountDto();
+                BeanUtils.copyProperties(storedAccountDetails, returnValue);
 
-            return returnValue;
+                return returnValue;
+            } throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + "name field : It must be a full name");
         } throw new AccountServiceExcepetion(ErrorMessages.BAD_REQUEST.getErrorMessage() + "name field : It must be a full name");
     }
 
